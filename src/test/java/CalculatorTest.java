@@ -14,8 +14,11 @@ public class CalculatorTest {
     @Test
     @DisplayName("Should add two positive numbers")
     public void shouldAddTwoPositiveNumbers() {
-
-
+        int a = 1;
+        int b = 2;
+        int expected = 3;
+        int actual = new Calculator().add(a, b);
+        assertEquals(expected, actual);
     }
 
 }
