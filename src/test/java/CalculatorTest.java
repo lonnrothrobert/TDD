@@ -2,13 +2,17 @@ import org.example.tdd.Calculator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 @DisplayName("Calculator TDD Demo")
 public class CalculatorTest {
+    private Calculator calculator;
     @BeforeEach
     public void setup() {
-        Calculator calculator = new Calculator();
+         calculator = new Calculator();
     }
 
     @Test
@@ -17,8 +21,102 @@ public class CalculatorTest {
         int a = 1;
         int b = 2;
         int expected = 3;
-        int actual = new Calculator().add(a, b);
+        int actual = calculator.add(a, b);
         assertEquals(expected, actual);
     }
+    @Test
+    @DisplayName("Should add zero to a number")
+    public void shouldAddZeroToANumber() {
+        int a = 10;
+        int b = 0;
+        int expected = 10;
+        int actual = calculator.add(a, b);
+        assertEquals(expected, actual);
+    }
+    @Test
+    @DisplayName("Should add negative numbers")
+    public void shouldAddNegativeNumbers() {
+        int a = 10;
+        int b = -1;
+        int expected = 9;
+        int actual = calculator.add(a, b);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Should subtract two numbers")
+    public void shouldSubStartTwoNumbers() {
+        int a = 3;
+        int b = 2;
+        int expected = 1;
+        int actual = calculator.sub(a, b);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Should handle negative result in subtraction")
+    public void shouldHandleNegativeResultInSubtraction() {
+        int a = -1;
+        int b = 2;
+        int expected = -3;
+        int actual = calculator.sub(a, b);
+        assertEquals(expected, actual);
+
+    }
+    @Test
+    @DisplayName("Should multiply two numbers")
+    public void shouldMultiplyTwoNumbers() {
+        int a = 3;
+        int b = 2;
+        int expected = 6;
+        int actual = calculator.multiply(a, b);
+        assertEquals(expected, actual);
+    }
+    @Test
+    @DisplayName("Should return zero when multiplying by zero")
+    public void shouldReturnZeroWhenMultiplyingByZero() {
+
+        int a = 3;
+        int b = 0;
+        int expected = 0;
+        int actual = calculator.multiply(a, b);
+        assertEquals(expected, actual);
+    }
+    @Test
+    @DisplayName("Should divide two numbers")
+    public void shouldDivideTwoNumbers() {
+        double a = 4;
+        double b = 2;
+        double expected = 2;
+        double actual = calculator.divide(a, b);
+        assertEquals(expected, actual);
+    }
+    @Test
+    @DisplayName("Should handle decimal division")
+    public void shouldHandleDecimalDivision() {
+        double a = 4.0;
+        double b = 2.0;
+        double expected = 2.0;
+        double actual = calculator.divide(a, b);
+        assertEquals(expected, actual);
+
+    }
+    @Test
+    @DisplayName("Should throw exception when dividing by zero")
+    public void shouldThrowExceptionWhenDividingByZero() {
+        double a = 4;
+        double b = 0;
+
+
+        assertThrows(ArithmeticException.class, () -> calculator.divide(a, b));
+
+    }
+    /*
+
+
+    @DisplayName("Should calculate power of a number")
+
+    @DisplayName("Should handle power of zero")
+    */
 
 }
