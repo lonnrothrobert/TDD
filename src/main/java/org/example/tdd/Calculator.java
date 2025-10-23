@@ -19,5 +19,14 @@ public class Calculator {
         if(b==0){throw new ArithmeticException("Cannot divide by zero");}
         return a/b;
     }
+    public double power (double a, double b)
+    {
+        return Math.pow(a,b);
+    }
+    public double squareRoot(double a)
+    {
+        if(a<0){throw new ArithmeticException("Cannot take square root of a negative number");}
+        return Math.sqrt(a);
+    }
 
 }

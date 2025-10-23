@@ -2,7 +2,7 @@ import org.example.tdd.Calculator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import static org.assertj.core.api.Assertions.*;
+
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -106,17 +106,56 @@ public class CalculatorTest {
     public void shouldThrowExceptionWhenDividingByZero() {
         double a = 4;
         double b = 0;
-
-
         assertThrows(ArithmeticException.class, () -> calculator.divide(a, b));
-
     }
-    /*
-
-
+    @Test
     @DisplayName("Should calculate power of a number")
-
+    public void shouldCalculatePowerOfANumber() {
+        double a = 3;
+        double b = 2;
+        double expected = 9;
+        double actual = calculator.power(a, b);
+        assertEquals(expected, actual);
+    }
+    @Test
     @DisplayName("Should handle power of zero")
-    */
+    public void shouldHandlePowerOfZero() {
+        double a = 4;
+        double b = 0;
+        double expected = 1;
+        double actual = calculator.power(a, b);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Should calculate square root")
+    public void shouldCalculateSquareRoot() {
+        double a = 4;
+        double expected = 2;
+        double actual = calculator.squareRoot(a);
+        assertEquals(expected, actual);
+    }
+    @Test
+    @DisplayName("Should throw exception for negative square root")
+    public void shouldThrowExceptionForNegativeSquareRoot() {
+        double a = -4;
+        java.lang.ArithmeticException exception = assertThrows(ArithmeticException.class, () -> calculator.squareRoot(a));
+        assertEquals("Cannot take square root of a negative number", exception.getMessage());
+    }
+
+    @Test
+    @DisplayName("Should handle maximum integer values in addition")
+    public void shouldHandleMaximumIntegerValuesInAddition() {
+
+
+        int result = calculator.add(Integer.MAX_VALUE, 1);
+        assertEquals(Integer.MIN_VALUE, result);
+    }
+    @Test
+    @DisplayName("Should handle negative exponents")
+    public void shouldHandleNegativeExponents() {
+        assertEquals(0.25, calculator.power(2,-2));
+    }
+
 
 }
